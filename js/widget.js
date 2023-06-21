@@ -1,8 +1,7 @@
 import { startWidget } from './modules/widgetService.js';
 
-const weatherInstance = app => {
-  const widget = startWidget();
-
+const weatherInstance = async app => {
+  const widget = await startWidget();
   app.append(widget);
 };
 
