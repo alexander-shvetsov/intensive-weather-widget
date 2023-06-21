@@ -50,23 +50,14 @@
   align-items: center;
 }
 
-.widget__date {
-}
-
 .widget__time {
   font-size: 28px;
-}
-
-.widget__day {
 }
 
 .widget__icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.widget__icon-text {
 }
 
 .widget__img {
@@ -121,9 +112,6 @@
   align-items: center;
 }
 
-.widget__wind-title {
-}
-
 .widget__wind-speed,
 .widget__humidity-value,
 .widget__pressure-value {
@@ -138,9 +126,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.widget__humidity-title {
 }
 
 .widget__pressure {
@@ -165,9 +150,6 @@
 
 .widget__day-item:last-child {
   border-right: none;
-}
-
-.widget__day-text {
 }
 
 .widget__day-img {
