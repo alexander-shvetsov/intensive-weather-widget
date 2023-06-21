@@ -62,5 +62,5 @@ export const getDewPoint = (temp, humi) => {
   const b = 237.7;
   const lambda = (a * temp) / (b + temp) + Math.log(humi / 100);
 
-  return ((b * lambda) / (a - lambda)).toFixed(2);
+  return getCelsius((b * lambda) / (a - lambda));
 };
