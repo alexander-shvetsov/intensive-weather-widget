@@ -2,7 +2,6 @@ import { getCelsius, getCurrentDateTime, getDewPoint, getWindDirection } from '.
 
 export const renderWidgetToday = (widget, data) => {
   const { dayOfMonth, dayOfWeek, month, year, hours, minutes } = getCurrentDateTime();
-  console.log('🚀 ~ file: widgetRender.js:4 ~ renderWidgetToday ~ data:', data);
 
   widget.insertAdjacentHTML(
     'beforeend',
