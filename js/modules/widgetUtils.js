@@ -24,6 +24,10 @@ export const getCelsius = num => {
   return (num - 273.15).toFixed(0);
 };
 
+export const getPressure = num => {
+  return (num * 0.75006375541921).toFixed(0);
+};
+
 export const showError = (widget, error) => {
   widget.textContent = error.toString();
   widget.classList.add('widget_error');

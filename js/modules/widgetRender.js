@@ -1,4 +1,4 @@
-import { getCelsius, getCurrentDateTime, getDewPoint, getWindDirection } from './widgetUtils.js';
+import { getCelsius, getCurrentDateTime, getDewPoint, getPressure, getWindDirection } from './widgetUtils.js';
 
 export const renderWidgetToday = (widget, data) => {
   const { dayOfMonth, dayOfWeek, month, year, hours, minutes } = getCurrentDateTime();
@@ -46,7 +46,7 @@ export const renderWidgetOther = (widget, data) => {
         </div>
         <div class="widget__pressure">
           <p class="widget__pressure-title">Давление</p>
-          <p class="widget__pressure-value">${data.main.pressure}</p>
+          <p class="widget__pressure-value">${getPressure(data.main.pressure)}</p>
           <p class="widget__pressure-text">мм рт.ст.</p>
         </div>
       </div>
