@@ -88,8 +88,3 @@ export const renderWidgetForecast = widget => {
     `
   );
 };
-
-export const showError = (widget, error) => {
-  widget.textContent = error.toString();
-  widget.classList.add('widget_error');
-};

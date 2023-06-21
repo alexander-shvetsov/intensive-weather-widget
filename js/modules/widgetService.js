@@ -1,5 +1,6 @@
 import { fetchWeather } from './APIservice.js';
-import { renderWidgetForecast, renderWidgetOther, renderWidgetToday, showError } from './widgetRender.js';
+import { renderWidgetForecast, renderWidgetOther, renderWidgetToday } from './widgetRender.js';
+import { showError } from './widgetUtils.js';
 
 export const startWidget = async () => {
   const widget = document.createElement('div');

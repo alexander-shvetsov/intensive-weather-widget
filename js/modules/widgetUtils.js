@@ -24,6 +24,11 @@ export const getCelsius = num => {
   return (num - 273.15).toFixed(0);
 };
 
+export const showError = (widget, error) => {
+  widget.textContent = error.toString();
+  widget.classList.add('widget_error');
+};
+
 // calc by directions: https://uni.edu/storm/Wind%20Direction%20slide.pdf
 export const getWindDirection = deg => {
   if (deg > 11.25 && deg <= 56.25) {
