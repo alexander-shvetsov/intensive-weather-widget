@@ -83,13 +83,11 @@ export const getDewPoint = (temp, humi) => {
 };
 
 export const getWeatherForecastData = data => {
-  const currentDate = new Date();
-  const dateUTC = new Date(currentDate.getTime() + currentDate.getTimezoneOffset() * 60000);
-
   const forecast = data.list.filter(
     item =>
       new Date(item.dt_txt).getHours() === 12 &&
-      new Date(item.dt_txt).getDate() >= dateUTC.getDate()
+      new Date(item.dt_txt).getDate() > new Date().getDate() &&
+      new Date(item.dt_txt).getDate() < new Date().getDate() + 5
   );
 
   const forecastData = forecast.map(item => {
