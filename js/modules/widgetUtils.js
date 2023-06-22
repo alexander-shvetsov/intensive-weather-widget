@@ -114,8 +114,8 @@ export const getWeatherForecastData = data => {
       }
     }
 
-    const minTemp = Math.min.apply(null, tmp);
-    const maxTemp = Math.max.apply(null, tmp);
+    const minTemp = Math.min(...tmp);
+    const maxTemp = Math.max(...tmp);
 
     return { dayOfWeek, weatherIcon, maxTemp, minTemp };
   });
