@@ -54,26 +54,6 @@ export const showError = (widget, error) => {
   widget.classList.add('widget_error');
 };
 
-export const getWindDirection = deg => {
-  if (deg > 10 && deg <= 80) {
-    return '↙';
-  } else if (deg > 80 && deg <= 100) {
-    return '⬅';
-  } else if (deg > 100 && deg <= 170) {
-    return '↖';
-  } else if (deg > 170 && deg <= 190) {
-    return '⬆';
-  } else if (deg > 190 && deg <= 260) {
-    return '↗';
-  } else if (deg > 260 && deg <= 280) {
-    return '➡';
-  } else if (deg > 280 && deg <= 350) {
-    return '↘';
-  } else {
-    return '⬇';
-  }
-};
-
 export const getDewPoint = (temp, humi) => {
   const a = 17.27;
   const b = 237.7;
