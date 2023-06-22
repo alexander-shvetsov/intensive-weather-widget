@@ -97,21 +97,19 @@ export const getWeatherForecastData = data => {
 
     const weatherIcon = item.weather[0].icon;
 
-    let minTemp = Infinity;
-    let maxTemp = -Infinity;
+    let tmp = [];
 
     for (let i = 0; i < data.list.length; i++) {
       const temp = data.list[i].main.temp;
       const tempData = new Date(data.list[i].dt_txt);
 
       if (tempData.getDate() === date.getDate()) {
-        if (temp < minTemp) {
-          minTemp = temp;
-        } else {
-          maxTemp = temp;
-        }
+        tmp.push(temp);
       }
     }
+
+    const minTemp = Math.min.apply(null, tmp);
+    const maxTemp = Math.max.apply(null, tmp);
 
     return { dayOfWeek, weatherIcon, maxTemp, minTemp };
   });
