@@ -83,9 +83,15 @@ export const getDewPoint = (temp, humi) => {
 };
 
 export const getWeatherForecastData = data => {
+  let hourseNow = new Date().getHours();
+
+  if (!(hourseNow % 3)) {
+    hourseNow -= 3;
+  }
+
   const forecast = data.list.filter(
     item =>
-      new Date(item.dt_txt).getHours() === 12 &&
+      new Date(item.dt_txt).getHours() === hourseNow &&
       new Date(item.dt_txt).getDate() >= new Date().getDate()
   );
 
