@@ -5,5 +5,5 @@ module.exports = {
   trailingComma: 'none',
   endOfLine: 'auto',
   htmlFormatWrapAttributes: 'force-aligned',
-  printWidth: 120
+  printWidth: 100
 };

@@ -4,8 +4,29 @@ const addZero = num => {
 };
 
 export const getCurrentDateTime = () => {
-  const months = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
-  const weekDays = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
+  const months = [
+    'янв',
+    'фев',
+    'мар',
+    'апр',
+    'май',
+    'июн',
+    'июл',
+    'авг',
+    'сен',
+    'окт',
+    'ноя',
+    'дек'
+  ];
+  const weekDays = [
+    'воскресенье',
+    'понедельник',
+    'вторник',
+    'среда',
+    'четверг',
+    'пятница',
+    'суббота'
+  ];
 
   const date = new Date();
 
@@ -25,7 +46,7 @@ export const getCelsius = num => {
 };
 
 export const getPressure = num => {
-  return (num * 0.75006375541921).toFixed(0);
+  return (num * 0.750063755419211).toFixed(0);
 };
 
 export const showError = (widget, error) => {
@@ -33,43 +54,67 @@ export const showError = (widget, error) => {
   widget.classList.add('widget_error');
 };
 
-// calc by directions: https://uni.edu/storm/Wind%20Direction%20slide.pdf
 export const getWindDirection = deg => {
-  if (deg > 11.25 && deg <= 56.25) {
-    return '↗';
-  } else if (deg > 56.25 && deg <= 90) {
-    return '➡';
-  } else if (deg > 90 && deg <= 168.75) {
-    return '↘';
-  } else if (deg > 168.75 && deg <= 191.25) {
-    return '⬇';
-  } else if (deg > 191.25 && deg <= 258.75) {
+  if (deg > 10 && deg <= 80) {
     return '↙';
-  } else if (deg > 258.75 && deg <= 281.25) {
+  } else if (deg > 80 && deg <= 100) {
     return '⬅';
-  } else if (deg > 281.25 && deg <= 348.75) {
+  } else if (deg > 100 && deg <= 170) {
     return '↖';
-  } else {
+  } else if (deg > 170 && deg <= 190) {
     return '⬆';
+  } else if (deg > 190 && deg <= 260) {
+    return '↗';
+  } else if (deg > 260 && deg <= 280) {
+    return '➡';
+  } else if (deg > 280 && deg <= 350) {
+    return '↘';
+  } else {
+    return '⬇';
   }
 };
 
 export const getDewPoint = (temp, humi) => {
-  /**
-   * Тр = (b*f(T, Rh))/(a-ƒ(T, Rh))
-   * ƒ(T, Rh) = (a*T)/(b+T)+ln⁡(Rh/100)
-   *
-   * Тр – температура точки росы, °С;
-   * a (постоянная) = 17,27;
-   * b (постоянная) = 237,7;
-   * Т – температура воздуха, °С;
-   * Rh – относительная влажность воздуха, %;
-   * ln – натуральный логарифм.
-   */
-
   const a = 17.27;
   const b = 237.7;
   const lambda = (a * temp) / (b + temp) + Math.log(humi / 100);
 
   return ((b * lambda) / (a - lambda)).toFixed(0);
+};
+
+export const getWeatherForecastData = data => {
+  const forecast = data.list.filter(
+    item =>
+      new Date(item.dt_txt).getHours() === 12 &&
+      new Date(item.dt_txt).getDate() >= new Date().getDate()
+  );
+
+  const forecastData = forecast.map(item => {
+    const date = new Date(item.dt_txt);
+
+    const weekDaysShort = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+    const dayOfWeek = weekDaysShort[date.getDay()];
+
+    const weatherIcon = item.weather[0].icon;
+
+    let minTemp = Infinity;
+    let maxTemp = -Infinity;
+
+    for (let i = 0; i < data.list.length; i++) {
+      const temp = data.list[i].main.temp;
+      const tempData = new Date(data.list[i].dt_txt);
+
+      if (tempData.getDate() === date.getDate()) {
+        if (temp < minTemp) {
+          minTemp = temp;
+        } else {
+          maxTemp = temp;
+        }
+      }
+    }
+
+    return { dayOfWeek, weatherIcon, maxTemp, minTemp };
+  });
+
+  return forecastData;
 };
